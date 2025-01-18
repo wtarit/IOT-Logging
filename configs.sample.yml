@@ -1,0 +1,8 @@
+database:
+  host: localhost
+  port: 5432
+  user: postgres
+  password: pgpassword
+  dbname: temperature
+  sslmode: disable
+  schema: public

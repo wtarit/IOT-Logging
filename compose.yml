@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - iotpgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  iotlogger:
+    image: iotlogger
+    build:
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+    ports:
+      - 1323:1323
+
+volumes:
+  iotpgdata:
